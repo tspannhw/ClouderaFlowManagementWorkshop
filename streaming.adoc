@@ -1,6 +1,6 @@
-= From Edge to Streams Processing
+= Simple Apache NiFi Ingest Flow
 
-In this workshop you'll implement a data pipeline, using MiNiFi and NiFi to ingest data from an IoT device into Kafka and then consume data from Kafka and write it to Kudu tables.
+In this workshop you'll implement a data pipeline, using NiFi to ingest data and write it to Kudu tables.
 
 == Labs summary
 
