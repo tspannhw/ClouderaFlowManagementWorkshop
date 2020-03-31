@@ -42,6 +42,8 @@ You instructor will give access to a registration link where you can request a c
 
 In this workshop you'll implement a data pipeline, using MiNiFi and NiFi to ingest data from an IoT device into Kafka and then consume data from Kafka and write it to Kudu tables.
 
+image::images/cfmreferencearch.png[width=800]
+
 == Labs summary
 
 * *Lab 1* - On the NiFi cluster, prepare the data and send it to the **Kafka** cluster.
