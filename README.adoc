@@ -529,7 +529,12 @@ OR "location.state" = 'Pennsylvania'
 OR "location.state" = 'Connecticut')
 ----
 
-
+[source,sql]
+----
+CREATE EXTERNAL TABLE IF NOT EXISTS `people` (`gender` STRING, `name.title` STRING, `name.first` STRING, `name.last` STRING, `location.street.number` BIGINT, `location.street.name` STRING, `location.city` STRING, `location.state` STRING, `location.country` STRING, `location.postcode` BIGINT, `location.coordinates.latitude` DOUBLE, `location.coordinates.longitude` DOUBLE, `location.timezone.offset` STRING, `location.timezone.description` STRING, `email` STRING, `login.uuid` STRING, `login.username` STRING, `login.password` STRING, `login.salt` STRING, `login.md5` STRING, `login.sha1` STRING, `login.sha256` STRING, `dob.date` STRING, `dob.age` BIGINT, `registered.date` STRING, `registered.age` BIGINT, `phone` STRING, `cell` STRING, `id.name` STRING, `id.value` STRING, `picture.large` STRING, `picture.medium` STRING, `picture.thumbnail` STRING, `nat` STRING) 
+STORED AS ORC
+LOCATION '/tmp/people'
+----
 == Resources
   
 * link:https://medium.freecodecamp.org/building-an-iiot-system-using-apache-nifi-mqtt-and-raspberry-pi-ce1d6ed565bc[Original blog by Abdelkrim Hadjidj]
