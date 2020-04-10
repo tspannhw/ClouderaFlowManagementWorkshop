@@ -204,3 +204,7 @@ order by observation_time desc, station_id asc
 select *
 from weather
 ----
+
+In Atlas, we can see the flow.
+
+image::images/atlasTopic.png[width=800]
