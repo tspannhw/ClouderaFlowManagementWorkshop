@@ -110,6 +110,33 @@ image::images/huequeryweatherkudu.png[width=800]
 
 The Second fork is to Kafka, this will be for the 'all' path.
 
+image::images/publishKafka.png[width=800]
+
+Kafka Brokers:  edge2ai-1.dim.local:9092
+Topic:  weather
+Reader & Writer:  reuse the JSON ones
+
+The Third and final fork is to HDFS (could be ontop of S3 or Blob Storage) as Apache ORC files.   This will also autogenerate the DDL for an external Hive table as an attribute, check your provenance after running.
+
+image::images/mergerecord.png[width=800]
+
+JSON in and out for record readers/writers, you can adjust the time and size of your batch or use defaults.
+
+image::images/putorc.png[width=800]
+
+image::images/putorc1.png[width=800]
+
+image::images/putorc2.png[width=800]
+
+Hadoop Config:   /etc/hadoop/conf/hdfs-site.xml,/etc/hadoop/conf/core-site.xml
+Record Reader:   Infer Json
+Directory:   /tmp/weather
+Table Name:   weather
+
+Before we run, build the /tmp/weather directory in HDFS and give it 777 permissions.   We can do this with Apache Hue.
+
+image::images/putOrcProvenance.png[width=800]
+
 
 
 [source,sql]
