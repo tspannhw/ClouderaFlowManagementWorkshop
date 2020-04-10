@@ -54,6 +54,10 @@ image::images/evaluatejsonpath2.png[width=800]
 
 Now we are going to call those REST URLs with InvokeHTTP.
 
+You will need to create a Standard SSL controller.
+
+image::images/enablessl.png[width=800]
+
 image::images/invokehttp.png[width=800]
 
 image::images/invokehttp2.png[width=800]
@@ -64,10 +68,23 @@ Example query on the current NOAA weather observations to look for temperature i
 
 image::images/queryRecord.png[width=800]
 
+You will need to set the Record Writer and Record Reader:
+
+
+Record Reader:   XML
+Record Writer:   JSON
+
+image::images/jsonwriter.png[width=800]
+
 [source,sql]
 ----
 SELECT * FROM FLOWFILE
 WHERE temp_f <= 60
+----
+
+[source,sql]
+----
+SELECT * FROM FLOWFILE
 ----
 
 Now we are splitting into three concurrent paths.   This shows the power of Apache NiFi.   We will write to Kudu, HDFS and Kafka.
@@ -135,7 +152,17 @@ Table Name:   weather
 
 Before we run, build the /tmp/weather directory in HDFS and give it 777 permissions.   We can do this with Apache Hue.
 
+image::images/createhdfsdir.png[width=800]
+
+image::images/changepermissionshdfsdir.png[width=800]
+
+Once we run we can get the table DDL and location:
+
 image::images/putOrcProvenance.png[width=800]
+
+Go to Hue to create your table.
+
+image::images/huetohive.png[width=800]
 
 
 
