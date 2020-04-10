@@ -54,17 +54,29 @@ image::images/evaluatejsonpath2.png[width=800]
 
 Now we are going to call those REST URLs with InvokeHTTP.
 
-image::images/invokehttp[width=800]
+image::images/invokehttp.png[width=800]
 
-image::images/invokehttp2[width=800]
+image::images/invokehttp2.png[width=800]
 
-Example query on the current NOAA weather observations from some locations including Newark Airport and NYC:
+Then we are going to run a query to convert these and route based on our queries.
+
+Example query on the current NOAA weather observations to look for temperature in fareneheit below 60 degrees.   You can make a query with any of the fields in the where cause.  Give it a try!
+
+image::images/queryRecord.png[width=800]
 
 [source,sql]
 ----
 SELECT * FROM FLOWFILE
 WHERE temp_f <= 60
 ----
+
+Now we are splitting into three concurrent paths.   This shows the power of Apache NiFi.   We will write to Kudu, HDFS and Kafka.
+
+For the results of our cold path (temp_f <=60), we will write to a Kudu table.
+
+image::images/putkudu.png[width=800]
+
+
 
 [source,sql]
 ----
