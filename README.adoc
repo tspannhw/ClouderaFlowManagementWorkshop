@@ -508,33 +508,37 @@ image::images/table_select.png[width=800]
 
 Pick any REST API of your choice, but I have walked through this one:
 
-https://randomuser.me/api/?format=csv&nat=us&results=25&noinfo
+https://w1.weather.gov/xml/current_obs/display.php?stid=KTTN
 
 If you wish to choose your own data adventure, you can pick one of these others.   You will have to build your own table if you wish to store it.  They return CSV, JSON or XML; since we have record processors we don't care.  Just know which you pick.
 
 * https://min-api.cryptocompare.com/data/price?fsym=ETH&tsyms=BTC,USD,EUR
 * https://data.cdc.gov/api/views/cjae-szjv/rows.json?accessType=DOWNLOAD
-* https://w1.weather.gov/xml/current_obs/display.php?stid=KTTN
 * https://api.weather.gov/stations/KTTN/observations/current                                                                  * https://www1.nyc.gov/assets/tlc/downloads/csv/data_reports_monthly_indicators.csv
 * https://docs.coincap.io/?version=latest
 
-Example query on the random user example data:
+Example query on the current NOAA weather observations at an airport near me:
 
 [source,sql]
 ----
 SELECT * FROM FLOWFILE
-WHERE ("location.state" = 'New Jersey'
-OR "location.state" = 'New York'
-OR "location.state" = 'Pennsylvania'
-OR "location.state" = 'Connecticut')
+WHERE temp_f <= 60
 ----
 
 [source,sql]
 ----
-CREATE EXTERNAL TABLE IF NOT EXISTS `people` (`gender` STRING, `name.title` STRING, `name.first` STRING, `name.last` STRING, `location.street.number` BIGINT, `location.street.name` STRING, `location.city` STRING, `location.state` STRING, `location.country` STRING, `location.postcode` BIGINT, `location.coordinates.latitude` DOUBLE, `location.coordinates.longitude` DOUBLE, `location.timezone.offset` STRING, `location.timezone.description` STRING, `email` STRING, `login.uuid` STRING, `login.username` STRING, `login.password` STRING, `login.salt` STRING, `login.md5` STRING, `login.sha1` STRING, `login.sha256` STRING, `dob.date` STRING, `dob.age` BIGINT, `registered.date` STRING, `registered.age` BIGINT, `phone` STRING, `cell` STRING, `id.name` STRING, `id.value` STRING, `picture.large` STRING, `picture.medium` STRING, `picture.thumbnail` STRING, `nat` STRING) 
+CREATE EXTERNAL TABLE IF NOT EXISTS `weather` 
+(`credit` STRING, `credit_url` STRING, `image` STRUCT<`url`:STRING, `title`:STRING, `link`:STRING>, `suggested_pickup` STRING, `suggested_pickup_period` BIGINT,
+`location` STRING, `station_id` STRING, `latitude` DOUBLE, `longitude` DOUBLE, `observation_time` STRING, `observation_time_rfc822` STRING, `weather` STRING, `temperature_string` STRING, 
+`temp_f` DOUBLE, `temp_c` DOUBLE, `relative_humidity` BIGINT, `wind_string` STRING, `wind_dir` STRING, `wind_degrees` BIGINT, `wind_mph` DOUBLE, `wind_gust_mph` DOUBLE, `wind_kt` BIGINT,
+`wind_gust_kt` BIGINT, `pressure_string` STRING, `pressure_mb` DOUBLE, `pressure_in` DOUBLE, `dewpoint_string` STRING, `dewpoint_f` DOUBLE, `dewpoint_c` DOUBLE, `windchill_string` STRING, 
+`windchill_f` BIGINT, `windchill_c` BIGINT, `visibility_mi` DOUBLE, `icon_url_base` STRING, `two_day_history_url` STRING, `icon_url_name` STRING, `ob_url` STRING, `disclaimer_url` STRING, 
+`copyright_url` STRING, `privacy_policy_url` STRING) 
 STORED AS ORC
-LOCATION '/tmp/people'
+LOCATION '/tmp/weather'
 ----
+
+
 == Resources
   
 * link:https://medium.freecodecamp.org/building-an-iiot-system-using-apache-nifi-mqtt-and-raspberry-pi-ce1d6ed565bc[Original blog by Abdelkrim Hadjidj]
