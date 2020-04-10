@@ -512,13 +512,22 @@ https://randomuser.me/api/?format=csv&nat=us&results=25&noinfo
 
 If you wish to choose your own data adventure, you can pick one of these others.   You will have to build your own table if you wish to store it.  They return CSV, JSON or XML; since we have record processors we don't care.  Just know which you pick.
 
-https://min-api.cryptocompare.com/data/price?fsym=ETH&tsyms=BTC,USD,EUR
-https://data.cdc.gov/api/views/cjae-szjv/rows.json?accessType=DOWNLOAD
-https://w1.weather.gov/xml/current_obs/display.php?stid=KTTN
-https://api.weather.gov/stations/KTTN/observations/current                                                                    https://www1.nyc.gov/assets/tlc/downloads/csv/data_reports_monthly_indicators.csv
-https://docs.coincap.io/?version=latest
+* https://min-api.cryptocompare.com/data/price?fsym=ETH&tsyms=BTC,USD,EUR
+* https://data.cdc.gov/api/views/cjae-szjv/rows.json?accessType=DOWNLOAD
+* https://w1.weather.gov/xml/current_obs/display.php?stid=KTTN
+* https://api.weather.gov/stations/KTTN/observations/current                                                                  * https://www1.nyc.gov/assets/tlc/downloads/csv/data_reports_monthly_indicators.csv
+* https://docs.coincap.io/?version=latest
 
+Example query on the random user example data:
 
+[source,sql]
+----
+SELECT * FROM FLOWFILE
+WHERE ("location.state" = 'New Jersey'
+OR "location.state" = 'New York'
+OR "location.state" = 'Pennsylvania'
+OR "location.state" = 'Connecticut')
+----
 
 
 == Resources
