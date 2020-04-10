@@ -509,6 +509,8 @@ image::images/table_select.png[width=800]
 
 Pick any REST API of your choice, but I have walked through this one to grab a number of weather stations reports.
 
+image::images/workshopoverview.png[width=800]
+
 [source,json]
 ----
 [
