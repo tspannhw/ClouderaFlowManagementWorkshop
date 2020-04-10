@@ -76,20 +76,16 @@ For the results of our cold path (temp_f <=60), we will write to a Kudu table.
 
 image::images/putkudu.png[width=800]
 
+Kudu Masters: edge2ai-1.dim.local:7051
+Table Name:  impala::default.weatherkudu
+Record Reader:   Infer Json Tree Reader
+Kudu Operation Type: UPSERT
 
+Before you run this, go to Hue and build the table.
 
-[source,sql]
-----
-CREATE EXTERNAL TABLE IF NOT EXISTS `weather` 
-(`credit` STRING, `credit_url` STRING, `image` STRUCT<`url`:STRING, `title`:STRING, `link`:STRING>, `suggested_pickup` STRING, `suggested_pickup_period` BIGINT,
-`location` STRING, `station_id` STRING, `latitude` DOUBLE, `longitude` DOUBLE, `observation_time` STRING, `observation_time_rfc822` STRING, `weather` STRING, `temperature_string` STRING, 
-`temp_f` DOUBLE, `temp_c` DOUBLE, `relative_humidity` BIGINT, `wind_string` STRING, `wind_dir` STRING, `wind_degrees` BIGINT, `wind_mph` DOUBLE, `wind_gust_mph` DOUBLE, `wind_kt` BIGINT,
-`wind_gust_kt` BIGINT, `pressure_string` STRING, `pressure_mb` DOUBLE, `pressure_in` DOUBLE, `dewpoint_string` STRING, `dewpoint_f` DOUBLE, `dewpoint_c` DOUBLE, `windchill_string` STRING, 
-`windchill_f` BIGINT, `windchill_c` BIGINT, `visibility_mi` DOUBLE, `icon_url_base` STRING, `two_day_history_url` STRING, `icon_url_name` STRING, `ob_url` STRING, `disclaimer_url` STRING, 
-`copyright_url` STRING, `privacy_policy_url` STRING) 
-STORED AS ORC
-LOCATION '/tmp/weather'
-----
+image::images/huechooseimpala.png[width=800]
+
+image::images/huecreateweatherkudu.png[width=800]
 
 [source,sql]
 ----
@@ -105,7 +101,30 @@ PRIMARY KEY (`location`, `observation_time`)
 PARTITION BY HASH PARTITIONS 4
 STORED AS KUDU
 TBLPROPERTIES ('kudu.num_tablet_replicas' = '1');
+
+Let it run and query it.
+
+image::images/huequeryweatherkudu.png[width=800]
 ----
+
+
+The Second fork is to Kafka, this will be for the 'all' path.
+
+
+
+[source,sql]
+----
+CREATE EXTERNAL TABLE IF NOT EXISTS `weather` 
+(`credit` STRING, `credit_url` STRING, `image` STRUCT<`url`:STRING, `title`:STRING, `link`:STRING>, `suggested_pickup` STRING, `suggested_pickup_period` BIGINT,
+`location` STRING, `station_id` STRING, `latitude` DOUBLE, `longitude` DOUBLE, `observation_time` STRING, `observation_time_rfc822` STRING, `weather` STRING, `temperature_string` STRING, 
+`temp_f` DOUBLE, `temp_c` DOUBLE, `relative_humidity` BIGINT, `wind_string` STRING, `wind_dir` STRING, `wind_degrees` BIGINT, `wind_mph` DOUBLE, `wind_gust_mph` DOUBLE, `wind_kt` BIGINT,
+`wind_gust_kt` BIGINT, `pressure_string` STRING, `pressure_mb` DOUBLE, `pressure_in` DOUBLE, `dewpoint_string` STRING, `dewpoint_f` DOUBLE, `dewpoint_c` DOUBLE, `windchill_string` STRING, 
+`windchill_f` BIGINT, `windchill_c` BIGINT, `visibility_mi` DOUBLE, `icon_url_base` STRING, `two_day_history_url` STRING, `icon_url_name` STRING, `ob_url` STRING, `disclaimer_url` STRING, 
+`copyright_url` STRING, `privacy_policy_url` STRING) 
+STORED AS ORC
+LOCATION '/tmp/weather'
+----
+
 
 You can now use Apache Hue to query your tables and do some weather analytics.   When we are upserting into Kudu we are ensuring no duplicate reports for a weather station and observation time.
 
