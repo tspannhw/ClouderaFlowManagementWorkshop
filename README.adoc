@@ -502,6 +502,25 @@ LIMIT 100;
 image::images/table_select.png[width=800]
 
 
+
+[[lab_3, Lab 3]]
+== Bonus Lab 3 - Use NiFi to call REST API, transform, route and store the data
+
+Pick any REST API of your choice, but I have walked through this one:
+
+https://randomuser.me/api/?format=csv&nat=us&results=25&noinfo
+
+If you wish to choose your own data adventure, you can pick one of these others.   You will have to build your own table if you wish to store it.  They return CSV, JSON or XML; since we have record processors we don't care.  Just know which you pick.
+
+https://min-api.cryptocompare.com/data/price?fsym=ETH&tsyms=BTC,USD,EUR
+https://data.cdc.gov/api/views/cjae-szjv/rows.json?accessType=DOWNLOAD
+https://w1.weather.gov/xml/current_obs/display.php?stid=KTTN
+https://api.weather.gov/stations/KTTN/observations/current                                                                    https://www1.nyc.gov/assets/tlc/downloads/csv/data_reports_monthly_indicators.csv
+https://docs.coincap.io/?version=latest
+
+
+
+
 == Resources
   
 * link:https://medium.freecodecamp.org/building-an-iiot-system-using-apache-nifi-mqtt-and-raspberry-pi-ce1d6ed565bc[Original blog by Abdelkrim Hadjidj]
