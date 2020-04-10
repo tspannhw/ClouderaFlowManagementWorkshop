@@ -506,9 +506,35 @@ image::images/table_select.png[width=800]
 [[lab_3, Lab 3]]
 == Bonus Lab 3 - Use NiFi to call REST API, transform, route and store the data
 
-Pick any REST API of your choice, but I have walked through this one:
+Pick any REST API of your choice, but I have walked through this one to grab a number of weather stations reports.
 
-https://w1.weather.gov/xml/current_obs/display.php?stid=KTTN
+[source,json]
+----
+[
+{"url":"http://weather.gov/xml/current_obs/CWAV.xml"},
+{"url":"http://weather.gov/xml/current_obs/KTTN.xml"},
+{"url":"http://weather.gov/xml/current_obs/KEWR.xml"},
+{"url":"http://weather.gov/xml/current_obs/KEWR.xml"},
+{"url":"http://weather.gov/xml/current_obs/CWDK.xml"},
+{"url":"http://weather.gov/xml/current_obs/CWDZ.xml"},
+{"url":"http://weather.gov/xml/current_obs/CWFJ.xml"},
+{"url":"http://weather.gov/xml/current_obs/PAEC.xml"},
+{"url":"http://weather.gov/xml/current_obs/PAYA.xml"},
+{"url":"http://weather.gov/xml/current_obs/PARY.xml"},
+{"url":"http://weather.gov/xml/current_obs/K1R7.xml"},
+{"url":"http://weather.gov/xml/current_obs/KFST.xml"},
+{"url":"http://weather.gov/xml/current_obs/KSSF.xml"},
+{"url":"http://weather.gov/xml/current_obs/KTFP.xml"},
+{"url":"http://weather.gov/xml/current_obs/CYXY.xml"},
+{"url":"http://weather.gov/xml/current_obs/KJFK.xml"},
+{"url":"http://weather.gov/xml/current_obs/KISP.xml"},
+{"url":"http://weather.gov/xml/current_obs/KLGA.xml"},
+{"url":"http://weather.gov/xml/current_obs/KNYC.xml"},
+{"url":"http://weather.gov/xml/current_obs/KJRB.xml"}
+]
+----
+
+So we are using ${url} which will be one of these.   Feel free to pick your favorite airports or locations near you.   https://w1.weather.gov/xml/current_obs/index.xml
 
 If you wish to choose your own data adventure, you can pick one of these others.   You will have to build your own table if you wish to store it.  They return CSV, JSON or XML, since we have record processors we don't care.  Just know which you pick.
 
@@ -517,7 +543,7 @@ If you wish to choose your own data adventure, you can pick one of these others.
 * https://api.weather.gov/stations/KTTN/observations/current                                                                  * https://www1.nyc.gov/assets/tlc/downloads/csv/data_reports_monthly_indicators.csv
 * https://docs.coincap.io/?version=latest
 
-Example query on the current NOAA weather observations at an airport near me:
+Example query on the current NOAA weather observations from some locations including Newark Airport and NYC:
 
 [source,sql]
 ----
