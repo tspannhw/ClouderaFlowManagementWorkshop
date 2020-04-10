@@ -578,9 +578,16 @@ PRIMARY KEY (`location`, `observation_time`)
 PARTITION BY HASH PARTITIONS 4
 STORED AS KUDU
 TBLPROPERTIES ('kudu.num_tablet_replicas' = '1');
-
 ----
 
+You can now use Apache Hue to query your tables and do some weather analytics.   When we are upserting into Kudu we are ensuring no duplicate reports for a weather station and observation time.
+
+[source,sql]
+----
+select `location`, weather, temp_f, wind_string, dewpoint_string, latitude, longitude, observation_time
+from weatherkudu
+order by observation_time desc, station_id asc
+----
 == Resources
   
 * link:https://medium.freecodecamp.org/building-an-iiot-system-using-apache-nifi-mqtt-and-raspberry-pi-ce1d6ed565bc[Original blog by Abdelkrim Hadjidj]
