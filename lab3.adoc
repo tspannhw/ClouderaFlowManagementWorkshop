@@ -44,6 +44,20 @@ If you wish to choose your own data adventure, you can pick one of these others.
 * https://api.weather.gov/stations/KTTN/observations/current                                                                  * https://www1.nyc.gov/assets/tlc/downloads/csv/data_reports_monthly_indicators.csv
 * https://docs.coincap.io/?version=latest
 
+Then we will use SplitJSON to split the JSON records into single rows.
+
+image::images/splitjson.png[width=800]
+
+Then use EvaluateJSONPath to extract the URL.
+
+image::images/evaluatejsonpath2.png[width=800]
+
+Now we are going to call those REST URLs with InvokeHTTP.
+
+image::images/invokehttp[width=800]
+
+image::images/invokehttp2[width=800]
+
 Example query on the current NOAA weather observations from some locations including Newark Airport and NYC:
 
 [source,sql]
