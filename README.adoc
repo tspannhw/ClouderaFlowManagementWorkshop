@@ -511,6 +511,10 @@ Pick any REST API of your choice, but I have walked through this one to grab a n
 
 image::images/workshopoverview.png[width=800]
 
+We are going to build a GenerateFlowFile to feed our REST calls.
+
+image::images/generateflowfile.png[width=800]
+
 [source,json]
 ----
 [
