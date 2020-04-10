@@ -58,6 +58,16 @@ You will need to create a Standard SSL controller.
 
 image::images/enablessl.png[width=800]
 
+image::images/standardSSL.png[width=800]
+
+image::images/sslcontext.png[width=800]
+
+Truststore filename: /usr/lib/jvm/java-openjdk/jre/lib/security/cacerts
+Truststore password: changeit
+Truststore type:  JKS
+TLS Protocol:     TLS
+
+
 image::images/invokehttp.png[width=800]
 
 image::images/invokehttp2.png[width=800]
