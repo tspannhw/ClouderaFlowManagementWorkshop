@@ -2,7 +2,7 @@
 
 == Introduction
 
-In this virtual hands-on workshop, you will build a real workflow for an **IoT Predictive Maintenance** use case.    You will get hands-on experience in using CFM for production use cases.
+In this virtual hands-on workshop, you will build a real workflow for an **IoT Predictive Maintenance** use case.    You will get hands-on experience in using CFM (Cloudera Flow Management Powered by Apache NiFi) for production use cases.
 
 === Before you start
 
@@ -12,11 +12,12 @@ In this virtual hands-on workshop, you will build a real workflow for an **IoT P
 
 === Pre-requisites
 
-* Laptop with a supported OS (Windows 7 not supported).
+* Computer/Laptop with a supported OS (Windows 7 not supported).
 * A modern browser like Google Chrome or Firefox (IE not supported).
 * Turn Off Your Corporate VPN
 * Use a personal laptop if possible
-* You will be connecting to an IP with many web ports hosted on AWS
+* You will be connecting to an Amazon IP or Domain with many web ports hosted on AWS
+* Get your IP with http://icanhazip.com/
 
 === Connecting to your cluster
 
@@ -588,6 +589,13 @@ select `location`, weather, temp_f, wind_string, dewpoint_string, latitude, long
 from weatherkudu
 order by observation_time desc, station_id asc
 ----
+
+[source,sql]
+----
+select *
+from weather
+----
+
 == Resources
   
 * link:https://medium.freecodecamp.org/building-an-iiot-system-using-apache-nifi-mqtt-and-raspberry-pi-ce1d6ed565bc[Original blog by Abdelkrim Hadjidj]
