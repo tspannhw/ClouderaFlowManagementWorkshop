@@ -206,6 +206,8 @@ select *
 from weather
 ----
 
+image::images/lab3flow.png[width=800]
+
 In Atlas, we can see the flow.
 
 image::images/atlasTopic.png[width=800]
