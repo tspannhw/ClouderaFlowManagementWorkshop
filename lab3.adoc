@@ -189,6 +189,7 @@ STORED AS ORC
 LOCATION '/tmp/weather'
 ----
 
+image::images/weatherhdfslist.png[width=800]
 
 You can now use Apache Hue to query your tables and do some weather analytics.   When we are upserting into Kudu we are ensuring no duplicate reports for a weather station and observation time.
 
