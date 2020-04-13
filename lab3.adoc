@@ -110,7 +110,7 @@ Kudu Operation Type: UPSERT
 
 Before you run this, go to Hue and build the table.
 
-image::images/huechooseimpala.png[width=800]
+image::images/huechooseimpala.png[width=400]
 
 image::images/huecreateweatherkudu.png[width=800]
 
@@ -172,7 +172,7 @@ image::images/putOrcProvenanceWeather.png[width=800]
 
 Go to Hue to create your table.
 
-image::images/huetohive.png[width=800]
+image::images/huetohive.png[width=400]
 
 
 
