@@ -168,7 +168,7 @@ image::images/changepermissionshdfsdir.png[width=800]
 
 Once we run we can get the table DDL and location:
 
-image::images/putOrcProvenance.png[width=800]
+image::images/putOrcProvenanceWeather.png[width=800]
 
 Go to Hue to create your table.
 
