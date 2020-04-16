@@ -54,6 +54,43 @@ image::images/cfmreferencearch.png[width=800]
 [[lab_1, Lab 1]]
 == Lab 1 - Configuring the NiFi flow and pushing data to Kafka
 
+
+In this lab you will run a simple Python script that simulates IoT sensor data from some hypothetical machines, and send the data to a MQTT broker (link:https://mosquitto.org/[mosquitto]). The MQTT broker plays the role of a gateway that is connected to many and different type of sensors through the "mqtt" protocol. Your cluster comes with an embedded MQTT broker that the simulation script publishes to. For convenience, we will use NiFi to run the script rather than Shell commands.
+
+. Go to Apache NiFi and add a Processor (ExecuteProcess) to the canvas.
++
+image::images/simulate1.png[width=800]
+
+. Right-click the processor, select *Configure* (or, alternatively, just double-click the processor). On the *PROPERTIES* tab, set the properties shown below to run our Python simulate script.
++
+[source]
+----
+Command:           python3
+Command Arguments: /opt/demo/simulate.py
+----
++
+image::images/simulate2.png[width=500]
+
+. In the *SCHEDULING* tab, set to *Run Schedule: 1 sec*
++
+Alternatively, you could set that to other time intervals: 1 sec, 30 sec, 1 min, etc...
++
+image::images/runSimulator1or30.png[width=500]
+
+. In the *SETTINGS* tab, check the "*success*" relationship in the *AUTOMATICALLY TERMINATED RELATIONSHIPS* section. Click *Apply*.
++
+image::images/nifiTerminateRelationships.png[width=600]
+
+. You can then right-click to *Start* this simulator runner.
++
+image::images/nifiDemoStart.png[width=400]
+
+. Right-click and select *Stop* after a few seconds and look at the *provenance*. You'll see that it has run a number of times and produced results.
++
+image::images/NiFiViewDataProvenance.png[width=400]
++
+image::images/NiFiDataProvenance.png[width=800]
+
 In this lab, you will create a NiFi flow to receive the data from all gateways and push it to **Kafka**.
 
 === Creating a Process Group
