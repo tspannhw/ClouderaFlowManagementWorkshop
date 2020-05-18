@@ -131,8 +131,9 @@ TBLPROPERTIES ('kudu.num_tablet_replicas' = '1');
 
 Let it run and query it.
 
-image::images/huequeryweatherkudu.png[width=800]
 ----
+
+image::images/huequeryweatherkudu.png[width=800]
 
 
 The Second fork is to Kafka, this will be for the 'all' path.
