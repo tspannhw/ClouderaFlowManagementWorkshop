@@ -2,7 +2,7 @@
 
 \== Introduction
 
-In this virtual hands-on workshop, you will build a real workflow for an \*\*IoT Predictive Maintenance\*\* use case.    You will get hands-on experience in using CFM (Cloudera Flow Management Powered by Apache NiFi) for production use cases.
+In this virtual hands-on workshop, you will build a real workflow for an \*\*IoT Predictive Maintenance\*\* use case. You will get hands-on experience in using CFM (Cloudera Flow Management Powered by Apache NiFi) for production use cases.
 
 \=== Before you start
 
@@ -52,7 +52,7 @@ You instructor will give access to a registration link where you can request a c
 
 . Login into \*Cloudera Manager\* and familiarize yourself with the services installed
 
-. Login into \*Hue\*. As you are the first user to login into Hue, you are granted admin privileges. At this point, you won't need to do anything on Hue, but by logging in, CDH has created your HDFS user and folder, which you will need for the next lab.  When you log into Hue, do so as admin/admin.
+. Login into \*Hue\*. As you are the first user to login into Hue, you are granted admin privileges. At this point, you won't need to do anything on Hue, but by logging in, CDH has created your HDFS user and folder, which you will need for the next lab. When you log into Hue, do so as admin/admin.
 
 \== Labs
 
@@ -88,7 +88,7 @@ image::images/simulate1.png\[width=800\]
 
 \----
 
-Command:           python3
+Command: python3
 
 Command Arguments: /opt/demo/simulate.py
 
@@ -150,7 +150,7 @@ image::images/create\_pgroup.png\[width=800\]
 
 Name: NiFi Registry
 
-URL:  http://edge2ai-1.dim.local:18080
+URL: http://edge2ai-1.dim.local:18080
 
 \----
 
@@ -176,9 +176,9 @@ image::images/sensor\_flows\_bucket.png\[width=800\]
 
 \----
 
-Registry:  NiFi Registry
+Registry: NiFi Registry
 
-Bucket:    SensorFlows
+Bucket: SensorFlows
 
 Flow Name: SensorProcessGroup
 
@@ -214,9 +214,9 @@ image::images/added\_hwx\_sr\_service.png\[width=800\]
 
 Schema Access Strategy: Use 'Schema Name' Property
 
-Schema Registry:        HortonworksSchemaRegistry
+Schema Registry: HortonworksSchemaRegistry
 
-Schema Name:            ${schema.name} -> already set by default!
+Schema Name: ${schema.name} -> already set by default!
 
 \----
 
@@ -228,11 +228,11 @@ Schema Name:            ${schema.name} -> already set by default!
 
 \----
 
-Schema Write Strategy:  HWX Schema Reference Attributes
+Schema Write Strategy: HWX Schema Reference Attributes
 
 Schema Access Strategy: Use 'Schema Name' Property
 
-Schema Registry:        HortonworksSchemaRegistry
+Schema Registry: HortonworksSchemaRegistry
 
 \----
 
@@ -282,7 +282,7 @@ Name: Set Schema Name
 
 \----
 
-Property Name:  schema.name
+Property Name: schema.name
 
 Property Value: SensorReading
 
@@ -304,7 +304,7 @@ Property Value: SensorReading
 
 \----
 
-Name:                                  Publish to Kafka topic: iot
+Name: Publish to Kafka topic: iot
 
 \----
 
@@ -318,15 +318,15 @@ Name:                                  Publish to Kafka topic: 
 
 \----
 
-Kafka Brokers:                         edge2ai-1.dim.local:9092
+Kafka Brokers: edge2ai-1.dim.local:9092
 
-Topic Name:                            iot
+Topic Name: iot
 
-Record Reader:                         JsonTreeReader
+Record Reader: JsonTreeReader
 
-Record Writer:                         JsonRecordSetWriter
+Record Writer: JsonRecordSetWriter
 
-Use Transactions:                      false
+Use Transactions: false
 
 Attributes to Send as Headers (Regex): schema.\*
 
@@ -344,7 +344,7 @@ NOTE: Make sure you use the PublishKafkaRecord\_2.0 processor and \*not\* the Pu
 
 \----
 
-Property Name:  client.id
+Property Name: client.id
 
 Property Value: nifi-sensor-data
 
@@ -452,7 +452,7 @@ On the \*PROPERTIES\* tab:
 
 Schema Access Strategy: HWX Schema Reference Attributes
 
-Schema Registry:        HortonworksSchemaRegistry
+Schema Registry: HortonworksSchemaRegistry
 
 \----
 
@@ -470,11 +470,11 @@ On the \*PROPERTIES\* tab:
 
 \----
 
-URL:           http://cdsw.\<YOUR\_CLUSTER\_PUBLIC\_IP>.nip.io/api/altus-ds-1/models/call-model
+URL: http://cdsw.\<YOUR\_CLUSTER\_PUBLIC\_IP>.nip.io/api/altus-ds-1/models/call-model
 
 Record Reader: JsonTreeReader
 
-Record Path:   /response
+Record Path: /response
 
 \----
 
@@ -526,21 +526,21 @@ Name: Consume Kafka iot messages
 
 \----
 
-Kafka Brokers:                        edge2ai-1.dim.local:9092
+Kafka Brokers: edge2ai-1.dim.local:9092
 
-Topic Name(s):                        iot
+Topic Name(s): iot
 
-Topic Name Format:                    names
+Topic Name Format: names
 
-Record Reader:                        JsonTreeReader - With schema identifier
+Record Reader: JsonTreeReader - With schema identifier
 
-Record Writer:                        JsonRecordSetWriter
+Record Writer: JsonRecordSetWriter
 
-Honor Transactions:                   false
+Honor Transactions: false
 
-Group ID:                             iot-sensor-consumer
+Group ID: iot-sensor-consumer
 
-Offset Reset:                         latest
+Offset Reset: latest
 
 Headers to Add as Attributes (Regex): schema.\*
 
@@ -580,15 +580,15 @@ Name: Predict machine health
 
 \----
 
-Record Reader:          JsonTreeReader - With schema identifier
+Record Reader: JsonTreeReader - With schema identifier
 
-Record Writer:          JsonRecordSetWriter
+Record Writer: JsonRecordSetWriter
 
-Lookup Service:         RestLookupService
+Lookup Service: RestLookupService
 
-Result RecordPath:      /response
+Result RecordPath: /response
 
-Routing Strategy:       Route to 'success'
+Routing Strategy: Route to 'success'
 
 Record Result Contents: Insert Entire Record
 
@@ -602,9 +602,9 @@ Record Result Contents: Insert Entire Record
 
 \----
 
-mime.type:      toString('application/json', 'UTF-8')
+mime.type: toString('application/json', 'UTF-8')
 
-request.body:   concat('{"accessKey":"', '${cdsw.access.key}', '","request":{"feature":"', /sensor\_0, ', ', /sensor\_1, ', ', /sensor\_2, ', ', /sensor\_3, ', ', /sensor\_4, ', ', /sensor\_5, ', ', /sensor\_6, ', ', /sensor\_7, ', ', /sensor\_8, ', ', /sensor\_9, ', ', /sensor\_10, ', ', /sensor\_11, '"}}')
+request.body: concat('{"accessKey":"', '${cdsw.access.key}', '","request":{"feature":"', /sensor\_0, ', ', /sensor\_1, ', ', /sensor\_2, ', ', /sensor\_3, ', ', /sensor\_4, ', ', /sensor\_5, ', ', /sensor\_6, ', ', /sensor\_7, ', ', /sensor\_8, ', ', /sensor\_9, ', ', /sensor\_10, ', ', /sensor\_11, '"}}')
 
 request.method: toString('post', 'UTF-8')
 
@@ -644,9 +644,9 @@ Name: Update health flag
 
 \----
 
-Record Reader:              JsonTreeReader - With schema identifier
+Record Reader: JsonTreeReader - With schema identifier
 
-Record Writer:              JsonRecordSetWriter
+Record Writer: JsonRecordSetWriter
 
 Replacement Value Strategy: Record Path Value
 
@@ -696,11 +696,11 @@ Name: Write to Kudu
 
 \----
 
-Kudu Masters:     edge2ai-1.dim.local:7051
+Kudu Masters: edge2ai-1.dim.local:7051
 
-Table Name:       impala::default.sensors
+Table Name: impala::default.sensors
 
-Record Reader:    JsonTreeReader - With schema identifier
+Record Reader: JsonTreeReader - With schema identifier
 
 \----
 
@@ -730,7 +730,7 @@ image::images/model\_access\_key.png\[width=800\]
 
 \----
 
-Variable Name:  cdsw.access.key
+Variable Name: cdsw.access.key
 
 Variable Value: \<key copied from CDSW>
 
