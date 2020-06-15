@@ -471,9 +471,11 @@ Parameter Name:  cdsw.access.key
 Parameter Value: <key copied from CDSW>
 ----
 +
+image::images/updateParameterContext.png[width=800]	
+
 image::images/addparameter.png[width=800]	
 
-image::images/updateParameterContext.pngwidth=800]	
+
 
 . Click *Apply*
 
