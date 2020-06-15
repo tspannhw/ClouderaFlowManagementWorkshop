@@ -455,7 +455,7 @@ When we added the *Predict machine health* above, you may have noticed that one 
 +
 image::images/model_access_key.png[width=800]
 
-. Go back to the NiFi Web UI, right-click on an empty area of the *Process Sensor Data* canvas, and click on *Parameters*.
+. Go back to the NiFi Web UI, right-click on an empty area of the *Process Sensor Data* canvas, and click on *Variables*.
 
 . Click on the _plus_ button (image:images/plus_button.png[width=25]) and add the following parameter:
 +
