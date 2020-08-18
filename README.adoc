@@ -268,14 +268,15 @@ image::images/publishKafka_flow.png[width=800]
 +
 image::images/breadcrumbs.png[width=400]
 
-. Connect the Input Port to the *Process Sensor Data* Process Group by dragging the destination of the current connection from the funnel to the Process Group. When prompted, ensure the "To input" fields is set to the *Sensor data* Input Port.
-Start the input port and the two processors.
+. Connect the Input Port to the *Process Sensor Data* Process Group by dragging the destination of the current connection from the funnel to the Process Group. When prompted, ensure the "To input" fields is set to the *Sensor data* Input Port. 
 +
 image::images/connect_input.png[width=800]
 +
 image::images/to_input.png[width=800]
 
-. Refresh the screen (`Ctrl+R` on Linux/Windows; `Cmd+R` on Mac) and you should see that the records that were queued on the "*from Gateway*" Input Port disappeared. They flowed into the *Process Sensor Data* flow. If you expand the Process Group you should see that those records were processed by the _PublishKafkaRecord_ processor and there should be no records queued on the "failure" output queue.
+. Start the *ExecuteProcess* processor and refresh the screen (`Ctrl+R` on Linux/Windows; `Cmd+R` on Mac), you will see the queue starting to fill up.
+
+. Start the *Process Sensor Data* group and refresh again. You should see that the records that were queued disappeared. They flowed into the *Process Sensor Data* flow. If you expand the Process Group you should see that those records were processed by the _PublishKafkaRecord_ processor and there should be no records queued on the "failure" output queue.
 +
 image::images/kafka_success.png[width=800]
 +
