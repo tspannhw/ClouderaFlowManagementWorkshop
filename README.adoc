@@ -338,6 +338,8 @@ On the *PROPERTIES* tab:
 [source]
 ----
 URL:           http://modelservice.cdsw.<YOUR_CLUSTER_PUBLIC_IP>.nip.io/model
+<or>
+URL:           http://cdsw.YOUR_CLUSTER_PUBLIC_IP>.nip.io/api/altus-ds-1/models/call-model
 Record Reader: JsonTreeReader
 Record Path:   /response
 ----
