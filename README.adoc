@@ -131,6 +131,8 @@ Before we start building our flow, let's create a Process Group to help organizi
 +
 image::images/create_pgroup.png[width=800]
 
+. You may have the NiFi Registry already connected for you, if so you do not need to add another one.
+
 . We want to be able to version control the flows we will add to the Process Group. In order to do that, we first need to connect NiFi to the *NiFi Registry*. On the NiFi global menu, click on "Controller Settings", navigate to the "Registry Clients" tab and add a Registry client with the following URL:
 +
 ----
@@ -141,6 +143,8 @@ URL:  http://edge2ai-1.dim.local:18080
 image::images/global_controller_settings.png[width=800]
 +
 image::images/add_registry_client.png[width=800]
+
+. On the *NiFi Registry* Web UI, if there is already a bucket called `SensorFlows`, you do not need to create it or add another one.
 
 . On the *NiFi Registry* Web UI, add another bucket for storing the Sensor flow we're about to build'. Call it `SensorFlows`:
 +
