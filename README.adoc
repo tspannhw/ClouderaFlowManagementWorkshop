@@ -33,7 +33,7 @@ You instructor will give access to a registration link where you can request a c
 |NiFi Registry|http://<public_dns>:18080/nifi-registry/|
 |Schema Registry|http://<public_dns>:7788/|
 |Hue|http://<public_dns>:8888/|`admin/admin`
-|CML|http://cdsw.<public_ip>.nip.io/|`admin/supersecret1`
+|CML|http://modelservice.cdsw.<public_dns>.nip.io/model.|`admin/supersecret1`
 |===
 . Login into *Cloudera Manager* and familiarize yourself with the services installed
 . Login into *Hue*. As you are the first user to login into Hue, you are granted admin privileges. At this point, you won't need to do anything on Hue, but by logging in, CDH has created your HDFS user and folder, which you will need for the next lab.  When you log into Hue, do so as admin/admin.
@@ -331,12 +331,12 @@ On the *PROPERTIES* tab:
 +
 [source]
 ----
-URL:           http://cdsw.<YOUR_CLUSTER_PUBLIC_IP>.nip.io/api/altus-ds-1/models/call-model
+URL:           http://modelservice.cdsw.<YOUR_CLUSTER_PUBLIC_IP>.nip.io/model
 Record Reader: JsonTreeReader
 Record Path:   /response
 ----
 +
-NOTE: `<YOUR_CLUSTER_PUBLIC_IP>` above must be replaced with your cluster's public IP, *not* DNS name. The final URL should look something like this: `\http://cdsw.12.34.56.78.nip.io/api/altus-ds-1/models/call-model`
+NOTE: `<YOUR_CLUSTER_PUBLIC_IP>` above must be replaced with your cluster's public IP, *not* DNS name. The final URL should look something like this: `\http://modelservice.cdsw.IPADDRESS.nip.io/model.`
 
 . Click on the _lightning bolt_ icon (image:images/enable_icon.png[width=20]) to *enable* the *RestLookupService* controller service.
 +
