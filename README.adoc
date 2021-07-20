@@ -475,7 +475,7 @@ Name: Write to Kudu
 [source]
 ----
 Kudu Masters:     edge2ai-1.dim.local:7051
-Table Name:       impala::default.sensors
+Table Name:       default.sensors
 Record Reader:    JsonTreeReader - With schema identifier
 ----
 
